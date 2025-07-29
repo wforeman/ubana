@@ -104,7 +104,6 @@ private:
   std::vector<int>   _blip_NPlanes;
   std::vector<int>   _blip_MaxWireSpan;
   std::vector<float> _blip_Energy;
-  std::vector<float> _blip_EnergyESTAR;
   std::vector<float> _blip_Time;
   std::vector<float> _blip_ProxTrkDist;
   std::vector<int>   _blip_ProxTrkID;
@@ -151,7 +150,7 @@ void BlipAnalysis::analyzeSlice(art::Event const &e, std::vector<ProxyPfpElem_t>
 {
   //Blip Reco
   fBlipAlg->RunBlipReco(e);
-  std::vector<blip::Blip> blipVec = fBlipAlg->blips;
+  std::vector<blipobj::Blip> blipVec = fBlipAlg->blips;
 
   std::cout << "number of blips = " << blipVec.size() << std::endl;
 
@@ -181,7 +180,6 @@ void BlipAnalysis::analyzeSlice(art::Event const &e, std::vector<ProxyPfpElem_t>
     _blip_NPlanes.push_back(blipVec[i].NPlanes);
     _blip_MaxWireSpan.push_back(blipVec[i].MaxWireSpan);
     _blip_Energy.push_back(blipVec[i].Energy);
-    _blip_EnergyESTAR.push_back(blipVec[i].EnergyESTAR);
     _blip_Time.push_back(blipVec[i].Time);
     _blip_ProxTrkDist.push_back(blipVec[i].ProxTrkDist);
     _blip_ProxTrkID.push_back(blipVec[i].ProxTrkID);
@@ -261,7 +259,6 @@ void BlipAnalysis::fillDefault()
   _blip_NPlanes.push_back(std::numeric_limits<int>::lowest());
   _blip_MaxWireSpan.push_back(std::numeric_limits<int>::lowest());
   _blip_Energy.push_back(std::numeric_limits<float>::lowest());
-  _blip_EnergyESTAR.push_back(std::numeric_limits<float>::lowest());
   _blip_Time.push_back(std::numeric_limits<float>::lowest());
   _blip_ProxTrkDist.push_back(std::numeric_limits<float>::lowest());
   _blip_ProxTrkID.push_back(std::numeric_limits<int>::lowest());
@@ -295,7 +292,6 @@ void BlipAnalysis::setBranches(TTree *_tree)
   _tree->Branch("blip_NPlanes", "std::vector< int >", &_blip_NPlanes);
   _tree->Branch("blip_MaxWireSpan", "std::vector< int >", &_blip_MaxWireSpan);
   _tree->Branch("blip_Energy", "std::vector< float >", &_blip_Energy);
-  _tree->Branch("blip_EnergyESTAR", "std::vector< float >", &_blip_EnergyESTAR);
   _tree->Branch("blip_Time", "std::vector< float >", &_blip_Time);
   _tree->Branch("blip_ProxTrkDist", "std::vector< float >", &_blip_ProxTrkDist);
   _tree->Branch("blip_ProxTrkID", "std::vector< int >", &_blip_ProxTrkID);
@@ -330,7 +326,6 @@ void BlipAnalysis::resetTTree(TTree *_tree)
   _blip_NPlanes.clear();
   _blip_MaxWireSpan.clear();
   _blip_Energy.clear();
-  _blip_EnergyESTAR.clear();
   _blip_Time.clear();
   _blip_ProxTrkDist.clear();
   _blip_ProxTrkID.clear();
