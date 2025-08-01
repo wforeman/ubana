@@ -150,7 +150,7 @@ void BlipAnalysis::analyzeSlice(art::Event const &e, std::vector<ProxyPfpElem_t>
 {
   //Blip Reco
   fBlipAlg->RunBlipReco(e);
-  std::vector<blipobj::Blip> blipVec = fBlipAlg->blips;
+  std::vector<blip::Blip> blipVec = fBlipAlg->blips;
 
   std::cout << "number of blips = " << blipVec.size() << std::endl;
 
